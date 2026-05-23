@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>안해어 변환기</title>
+<style>
+  body {
+    font-family: sans-serif;
+    padding: 20px;
+  }
+
+  textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 15px;
+  }
+
+  .label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .output {
+    font-size: 24px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 50px;
+    margin-bottom: 15px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+</style>
+</head>
+<body>
+
+<h2>로마자-안해어 변환기 | Latin alphabet-Aneë converter</h2>
+<h3>안해어 로마자 표기를 입력하면 허허허위키 전용 안해어 문자가 나옵니다.</h3>
+
+<textarea id="input" placeholder="로마자를 입력하세요..."></textarea>
+
+<div class="label">안해어 표기</div>
+<div class="output" id="output"></div>
+
+<div class="label">발음</div>
+<div class="output" id="pronunciation"></div>
+
+<textarea id="input" placeholder="로마자를 입력하세요..."></textarea>
+
+<div class="output" id="output"></div>
+
+<script>
+const map = {
+  "a": "㏀",
+  "e": "㎘",
+  "p": "㎿",
+  "v": "㏇",
+  "u": "㏓",
+  "m": "㎕",
+  "t": "㎔",
+  "sh": "㏝",
+  "f": "㎴",
+  "yo": "㏁",
+  "z": "㎨",
+  "zh": "㎂",
+  "ch": "฿",
+  "tr": "㎮",
+  "ë": "㎰",
+  "l": "㎶",
+  "k": "㎵",
+  "b": "㎯",
+  "i": "㏜",
+  "r": "㎹",
+  "ye": "㏐",
+  "n": "㎋"
+};
+
+function convert(text) {
+  let result = text.toLowerCase();
+
+  const keys = Object.keys(map).sort((a, b) => b.length - a.length);
+
+  keys.forEach(key => {
+    result = result.split(key).join(map[key]);
+  });
+
+  return result;
+}
+
+document.getElementById("input").addEventListener("input", function() {
+  document.getElementById("output").textContent =
+    convert(this.value);
+});
+</script>
+
+</body>
+</html>
